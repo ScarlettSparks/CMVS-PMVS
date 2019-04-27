@@ -488,11 +488,12 @@ operator>>(std::istream& is,dpoint<NumType,D> &p)
 	 for (int i=0; i<D; ++i)
 		 if(!(is >> p[i])){
 			 if(!is.eof()){
-			   char errorpoint = is.getloc();
-			   std::cerr << "Error Reading Point:" 
-				     << errorpoint << std::endl;
+				//char errorpoint = is.getloc();
+				streampos errorpoint = is.tellg();
+				std::cerr << "Error Reading Point:"
+				<< errorpoint << std::endl;
 				exit(1);
-			 }
+			}
 		 }
 		 
 	return is;
